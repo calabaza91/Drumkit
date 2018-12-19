@@ -1,5 +1,5 @@
 
-//Detect button press 
+//Detect button press
 var drumkitLength = document.querySelectorAll(".drum").length;
 
 for (var i = 0; i < drumkitLength; i++) {
@@ -8,14 +8,17 @@ for (var i = 0; i < drumkitLength; i++) {
 
     makeSound(buttonInnerHTML);
 
+    buttonAnimation(buttonInnerHTML);
+
   });
 }
 
 
 
 //Detect keypress
-document.addEventListener("keypress", (e) => {
+document.addEventListener("keypress", (e) => { //another way to write a function heading
   makeSound(e.key);
+  buttonAnimation(e.key);
 })
 
 function makeSound(key) {
@@ -52,4 +55,16 @@ function makeSound(key) {
     default:
       console.log(buttonInnerHTML);
   }
+}
+
+
+//Button Animation
+function buttonAnimation(currentKey){
+  var activeButton = document.querySelector("." + currentKey);
+
+  activeButton.classList.add("pressed");
+  setTimeout(function(){
+    activeButton.classList.remove("pressed");
+  }, 100)
+
 }
